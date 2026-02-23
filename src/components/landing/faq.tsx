@@ -44,7 +44,7 @@ const faqs = [
 
 export function Faq() {
     return (
-        <section id="faq" className="relative py-20 lg:py-28">
+        <section id="faq" aria-labelledby="faq-heading" className="relative py-20 lg:py-28">
             {/* Cross-hatch background */}
             <div
                 className="absolute inset-0 opacity-[0.02]"
@@ -57,7 +57,7 @@ export function Faq() {
             <div className="mx-auto max-w-3xl px-4 lg:px-8">
                 <FadeIn className="mb-12 text-center">
                     <CoordLabel text="[FAQ // 00.07]" className="mb-4 block" />
-                    <h2 className="text-2xl font-bold tracking-tight text-white sm:text-3xl">
+                    <h2 id="faq-heading" className="text-2xl font-bold tracking-tight text-white sm:text-3xl">
                         Questions fréquentes sur les{' '}
                         <span className="text-sky-400">portfolios UGC</span>
                     </h2>

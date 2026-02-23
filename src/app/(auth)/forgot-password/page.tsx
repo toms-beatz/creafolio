@@ -24,7 +24,7 @@ export default function ForgotPasswordPage() {
 
             {state.success ? (
                 <div className="rounded-lg border border-dashed border-sky-400/30 bg-sky-400/10 px-4 py-4 text-sm text-sky-300" role="status">
-                    <p className="font-medium text-sky-200 flex items-center gap-1"><Sparkles className="h-3.5 w-3.5" /> Email envoyé</p>
+                    <p className="font-medium text-sky-200 flex items-center gap-1"><Sparkles className="h-3.5 w-3.5" aria-hidden="true" /> Email envoyé</p>
                     <p className="mt-1 text-sky-400/80">{state.success}</p>
                 </div>
             ) : (
@@ -55,7 +55,7 @@ export default function ForgotPasswordPage() {
 
             <p className="mt-6 text-center text-sm text-zinc-500">
                 <Link href="/login" className="text-sky-400 hover:text-sky-300 transition-colors">
-                    <ArrowLeft className="inline h-3 w-3" /> Retour à la connexion
+                    <ArrowLeft className="inline h-3 w-3" aria-hidden="true" /> Retour à la connexion
                 </Link>
             </p>
         </>

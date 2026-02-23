@@ -34,7 +34,7 @@ export async function TrustBar() {
     ];
 
     return (
-        <section className="relative py-12 lg:py-16">
+        <section aria-label="Métriques de confiance" className="relative py-12 lg:py-16">
             <div className="mx-auto max-w-5xl px-4 lg:px-8">
                 {/* Header */}
                 <div className="flex items-center gap-4 mb-8">

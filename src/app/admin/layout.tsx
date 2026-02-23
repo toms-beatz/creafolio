@@ -141,7 +141,7 @@ export default async function AdminLayout({
     return (
         <div className="min-h-screen bg-zinc-950 text-white flex">
             {/* Sidebar — hidden on mobile */}
-            <aside className="hidden md:flex w-56 shrink-0 border-r border-dashed border-orange-900/30 bg-zinc-950 flex-col sticky top-0 h-screen">
+            <aside aria-label="Menu administration" className="hidden md:flex w-56 shrink-0 border-r border-dashed border-orange-900/30 bg-zinc-950 flex-col sticky top-0 h-screen">
                 {/* Logo */}
                 <div className="flex items-center gap-2 px-4 h-14 border-b border-dashed border-orange-900/30">
                     <span className="text-orange-400 font-bold text-base">B</span>
@@ -151,7 +151,7 @@ export default async function AdminLayout({
                 </div>
 
                 {/* Nav */}
-                <nav className="flex-1 px-3 py-4 space-y-1">
+                <nav aria-label="Navigation admin" className="flex-1 px-3 py-4 space-y-1">
                     {adminNav.map((item) => (
                         <Link
                             key={item.id}
@@ -231,7 +231,7 @@ export default async function AdminLayout({
                 </header>
 
                 {/* Page content */}
-                <main className="flex-1 p-4 md:p-6 pb-20 md:pb-6">{children}</main>
+                <main id="main-content" className="flex-1 p-4 md:p-6 pb-20 md:pb-6">{children}</main>
             </div>
 
             {/* Mobile bottom nav */}

@@ -44,6 +44,13 @@ export default function RootLayout({
   return (
     <html lang="fr" className="dark">
       <body className="bg-zinc-950 text-white antialiased">
+        {/* Skip to main content — a11y */}
+        <a
+          href="#main-content"
+          className="sr-only focus:not-sr-only focus:fixed focus:top-2 focus:left-2 focus:z-[200] focus:rounded-lg focus:bg-sky-400 focus:px-4 focus:py-2 focus:text-sm focus:font-semibold focus:text-zinc-950 focus:outline-none focus:ring-2 focus:ring-sky-300"
+        >
+          Aller au contenu principal
+        </a>
         {children}
         <CookieConsent />
       </body>

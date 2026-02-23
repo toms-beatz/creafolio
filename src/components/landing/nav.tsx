@@ -24,7 +24,7 @@ export async function Nav() {
     const isLoggedIn = !!user;
     return (
         <header className="sticky top-0 z-50 w-full border-b border-dashed border-zinc-800 bg-zinc-950/80 backdrop-blur-sm">
-            <nav className="mx-auto flex h-14 max-w-6xl items-center justify-between px-4 lg:px-8">
+            <nav aria-label="Navigation principale" className="mx-auto flex h-14 max-w-6xl items-center justify-between px-4 lg:px-8">
                 {/* Logo */}
                 <Link href="/" className="flex items-center gap-1.5 shrink-0">
                     <span className="text-base font-bold tracking-tight text-white">

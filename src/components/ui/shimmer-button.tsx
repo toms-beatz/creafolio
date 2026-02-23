@@ -14,6 +14,10 @@ interface ShimmerButtonProps {
     /** Durée de l'animation du shimmer (s) */
     shimmerDuration?: number;
     onClick?: () => void;
+    /** type du bouton */
+    type?: 'button' | 'submit' | 'reset';
+    /** aria-label optionnel */
+    'aria-label'?: string;
 }
 
 /**
@@ -27,9 +31,13 @@ export function ShimmerButton({
     background = '#38bdf8',
     shimmerDuration = 2.5,
     onClick,
+    type = 'button',
+    'aria-label': ariaLabel,
 }: ShimmerButtonProps) {
     return (
         <motion.button
+            type={type}
+            aria-label={ariaLabel}
             className={cn(
                 'group relative inline-flex items-center justify-center overflow-hidden rounded-lg px-8 py-3 font-semibold text-zinc-950 transition-all',
                 className,

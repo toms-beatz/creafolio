@@ -24,7 +24,7 @@ export function Footer() {
     const year = new Date().getFullYear();
 
     return (
-        <footer className="relative border-t border-dashed border-zinc-800">
+        <footer className="relative border-t border-dashed border-zinc-800" role="contentinfo">
             <div className="mx-auto max-w-6xl px-4 py-12 lg:px-8">
                 <div className="grid grid-cols-1 gap-10 sm:grid-cols-3">
                     {/* Colonne Marque */}
@@ -39,7 +39,7 @@ export function Footer() {
                             © {year} Blooprint
                         </p>
                         <p className="text-xs text-zinc-700 font-mono flex items-center gap-1">
-                            Fait avec <Heart className="h-3 w-3 text-sky-400/60" /> par TOM$
+                            Fait avec <Heart className="h-3 w-3 text-sky-400/60" aria-hidden="true" /><span className="sr-only">amour</span> par TOM$
                         </p>
                     </div>
 
@@ -48,18 +48,20 @@ export function Footer() {
                         <p className="text-xs font-semibold text-zinc-400 uppercase tracking-widest font-mono">
                             Produit
                         </p>
-                        <ul className="flex flex-col gap-2">
-                            {productLinks.map((link) => (
-                                <li key={link.label}>
-                                    <Link
-                                        href={link.href}
-                                        className="text-sm text-zinc-500 hover:text-white transition-colors duration-150"
-                                    >
-                                        {link.label}
-                                    </Link>
-                                </li>
-                            ))}
-                        </ul>
+                        <nav aria-label="Liens produit">
+                            <ul className="flex flex-col gap-2">
+                                {productLinks.map((link) => (
+                                    <li key={link.label}>
+                                        <Link
+                                            href={link.href}
+                                            className="text-sm text-zinc-500 hover:text-white transition-colors duration-150"
+                                        >
+                                            {link.label}
+                                        </Link>
+                                    </li>
+                                ))}
+                            </ul>
+                        </nav>
                     </div>
 
                     {/* Colonne Légal */}
@@ -67,18 +69,20 @@ export function Footer() {
                         <p className="text-xs font-semibold text-zinc-400 uppercase tracking-widest font-mono">
                             Légal
                         </p>
-                        <ul className="flex flex-col gap-2">
-                            {legalLinks.map((link) => (
-                                <li key={link.label}>
-                                    <Link
-                                        href={link.href}
-                                        className="text-sm text-zinc-500 hover:text-white transition-colors duration-150"
-                                    >
-                                        {link.label}
-                                    </Link>
-                                </li>
-                            ))}
-                        </ul>
+                        <nav aria-label="Liens légaux">
+                            <ul className="flex flex-col gap-2">
+                                {legalLinks.map((link) => (
+                                    <li key={link.label}>
+                                        <Link
+                                            href={link.href}
+                                            className="text-sm text-zinc-500 hover:text-white transition-colors duration-150"
+                                        >
+                                            {link.label}
+                                        </Link>
+                                    </li>
+                                ))}
+                            </ul>
+                        </nav>
                     </div>
                 </div>
 

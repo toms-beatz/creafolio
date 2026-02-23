@@ -6,7 +6,7 @@ export default function VerifyEmailPage() {
         <>
             <div className="mb-6 flex justify-center">
                 <div className="flex h-14 w-14 items-center justify-center rounded-xl border border-dashed border-sky-400/40 bg-sky-400/10">
-                    <Mail className="h-6 w-6 text-sky-400" />
+                    <Mail className="h-6 w-6 text-sky-400" aria-hidden="true" />
                 </div>
             </div>
 
@@ -28,7 +28,7 @@ export default function VerifyEmailPage() {
 
             <p className="mt-6 text-center text-sm text-zinc-500">
                 <Link href="/login" className="text-sky-400 hover:text-sky-300 transition-colors">
-                    <ArrowLeft className="inline h-3 w-3" /> Retour à la connexion
+                    <ArrowLeft className="inline h-3 w-3" aria-hidden="true" /> Retour à la connexion
                 </Link>
             </p>
         </>

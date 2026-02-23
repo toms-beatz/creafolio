@@ -14,6 +14,8 @@ export function ImagePlaceholder({ width, height, label, className }: ImagePlace
 
     return (
         <div
+            role="img"
+            aria-label={label ?? 'Image non disponible'}
             className={`relative w-full overflow-hidden bg-zinc-900 rounded-lg ${className ?? ''}`}
             style={useRatio ? { paddingBottom: `${ratio}%` } : { height: '100%' }}
         >

@@ -11,7 +11,7 @@ import { FadeIn, ScaleIn } from '@/components/ui/motion';
  */
 export function CtaFinal() {
     return (
-        <section className="relative overflow-hidden py-20 lg:py-28 border-t border-dashed border-zinc-800">
+        <section aria-labelledby="cta-heading" className="relative overflow-hidden py-20 lg:py-28 border-t border-dashed border-zinc-800">
             {/* Radial glow */}
             <div
                 className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 w-[800px] h-[500px] rounded-full pointer-events-none"
@@ -22,7 +22,7 @@ export function CtaFinal() {
 
             <div className="relative mx-auto max-w-xl px-4 text-center">
                 <FadeIn direction="up">
-                    <h2 className="text-2xl font-bold tracking-tight text-white sm:text-4xl mb-4 text-balance">
+                    <h2 id="cta-heading" className="text-2xl font-bold tracking-tight text-white sm:text-4xl mb-4 text-balance">
                         Prêt à{' '}
                         <span className="text-sky-400">créer</span>{' '}
                         ton portfolio UGC ?

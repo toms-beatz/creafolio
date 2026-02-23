@@ -29,7 +29,7 @@ export function AdminMobileNav({ items }: AdminMobileNavProps) {
     };
 
     return (
-        <nav className="fixed bottom-0 inset-x-0 z-50 border-t border-dashed border-orange-900/30 bg-zinc-950/95 backdrop-blur-sm md:hidden">
+        <nav aria-label="Navigation admin mobile" className="fixed bottom-0 inset-x-0 z-50 border-t border-dashed border-orange-900/30 bg-zinc-950/95 backdrop-blur-sm md:hidden">
             <div className="flex items-stretch">
                 {items.map((item) => {
                     const active = isActive(item.href);
@@ -37,6 +37,7 @@ export function AdminMobileNav({ items }: AdminMobileNavProps) {
                         <Link
                             key={item.id}
                             href={item.href}
+                            aria-current={active ? 'page' : undefined}
                             className={`relative flex flex-1 flex-col items-center justify-center gap-0.5 py-2.5 text-[10px] font-medium transition-colors ${active
                                 ? 'text-orange-400'
                                 : 'text-zinc-500 active:text-zinc-300'
@@ -45,7 +46,7 @@ export function AdminMobileNav({ items }: AdminMobileNavProps) {
                             <span className="relative text-sm">
                                 {item.icon}
                                 {(item.badgeCount ?? 0) > 0 && (
-                                    <span className="absolute -top-1.5 -right-3 flex h-4 min-w-4 items-center justify-center rounded-full bg-red-500/90 px-1 font-mono text-[8px] text-white">
+                                    <span className="absolute -top-1.5 -right-3 flex h-4 min-w-4 items-center justify-center rounded-full bg-red-500/90 px-1 font-mono text-[8px] text-white" aria-label={`${item.badgeCount} notifications`}>
                                         {item.badgeCount}
                                     </span>
                                 )}

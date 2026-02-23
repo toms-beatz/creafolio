@@ -25,7 +25,7 @@ export default function AuthLayout({
 
             {/* Navbar — logo top-left */}
             <header className="relative z-10 w-full border-b border-dashed border-zinc-800 bg-zinc-950/80 backdrop-blur-sm">
-                <nav className="mx-auto flex h-14 max-w-6xl items-center px-4 lg:px-8">
+                <nav aria-label="Retour accueil" className="mx-auto flex h-14 max-w-6xl items-center px-4 lg:px-8">
                     <Link href="/" className="text-base font-bold tracking-tight text-white hover:opacity-90 transition-opacity">
                         <span className="text-sky-400">B</span>looprint
                     </Link>
@@ -34,7 +34,7 @@ export default function AuthLayout({
 
             {/* Contenu centré */}
             <div className="relative z-10 flex flex-1 flex-col items-center justify-center px-4 py-12">
-                <div className="w-full max-w-md animate-bp-fade-up">
+                <main id="main-content" className="w-full max-w-md animate-bp-fade-up">
                     {/* Card */}
                     <div className="relative rounded-2xl border border-dashed border-zinc-700 bg-zinc-900/80 backdrop-blur-sm p-8">
                         {/* Coin coord en haut à droite */}
@@ -43,7 +43,7 @@ export default function AuthLayout({
                         </span>
                         {children}
                     </div>
-                </div>
+                </main>
             </div>
         </div>
     );

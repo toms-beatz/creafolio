@@ -78,7 +78,7 @@ const features = [
  */
 export function Features() {
     return (
-        <section id="features" className="relative py-20 lg:py-28 overflow-hidden">
+        <section id="features" aria-labelledby="features-heading" className="relative py-20 lg:py-28 overflow-hidden">
             {/* Radial glow background */}
             <div
                 className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 w-[900px] h-[600px] rounded-full pointer-events-none"
@@ -90,7 +90,7 @@ export function Features() {
                 {/* Header */}
                 <FadeIn className="mb-12 text-center">
                     <CoordLabel text="[FONCTIONNALITÉS // 00.04]" className="mb-3 block" />
-                    <h2 className="text-2xl font-bold tracking-tight text-white sm:text-3xl">
+                    <h2 id="features-heading" className="text-2xl font-bold tracking-tight text-white sm:text-3xl">
                         Tout ce qu&apos;il te faut pour{' '}
                         <span className="text-sky-400">briller en tant que créateur</span>
                     </h2>

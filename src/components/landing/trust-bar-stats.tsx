@@ -63,7 +63,7 @@ export function TrustBarStats({ stats }: { stats: Stat[] }) {
                         )}
                     >
                         {/* Glow dot */}
-                        <div className="absolute top-3 right-3 h-1.5 w-1.5 rounded-full bg-sky-400/60 group-hover:bg-sky-400 transition-colors" />
+                        <div className="absolute top-3 right-3 h-1.5 w-1.5 rounded-full bg-sky-400/60 group-hover:bg-sky-400 transition-colors" aria-hidden="true" />
 
                         <p className="text-3xl sm:text-4xl font-bold text-white font-mono tracking-tight mb-1">
                             {stat.numericValue > 0 ? (

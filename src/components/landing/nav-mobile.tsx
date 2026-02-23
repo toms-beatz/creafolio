@@ -1,6 +1,6 @@
 'use client';
 
-import { useState } from 'react';
+import { useState, useEffect, useRef, useCallback } from 'react';
 import Link from 'next/link';
 import { Button } from '@/components/ui/button';
 
@@ -11,23 +11,55 @@ interface NavLink {
 
 export function NavMobile({ links, isLoggedIn }: { links: NavLink[]; isLoggedIn?: boolean }) {
     const [open, setOpen] = useState(false);
+    const drawerRef = useRef<HTMLDivElement>(null);
+    const buttonRef = useRef<HTMLButtonElement>(null);
+
+    // Close on Escape key
+    const handleKeyDown = useCallback((e: KeyboardEvent) => {
+        if (e.key === 'Escape' && open) {
+            setOpen(false);
+            buttonRef.current?.focus();
+        }
+    }, [open]);
+
+    useEffect(() => {
+        document.addEventListener('keydown', handleKeyDown);
+        return () => document.removeEventListener('keydown', handleKeyDown);
+    }, [handleKeyDown]);
+
+    // Focus first link when drawer opens
+    useEffect(() => {
+        if (open && drawerRef.current) {
+            const firstLink = drawerRef.current.querySelector('a');
+            firstLink?.focus();
+        }
+    }, [open]);
 
     return (
         <div className="md:hidden">
             {/* Hamburger */}
             <button
+                ref={buttonRef}
                 onClick={() => setOpen(!open)}
-                aria-label={open ? 'Fermer le menu' : 'Ouvrir le menu'}
+                aria-label={open ? 'Fermer le menu de navigation' : 'Ouvrir le menu de navigation'}
+                aria-expanded={open}
+                aria-controls="mobile-nav-drawer"
                 className="flex flex-col gap-1.5 p-1 text-zinc-400"
             >
-                <span className={`block h-px w-5 bg-current transition-all duration-200 ${open ? 'translate-y-2 rotate-45' : ''}`} />
-                <span className={`block h-px w-5 bg-current transition-all duration-200 ${open ? 'opacity-0' : ''}`} />
-                <span className={`block h-px w-5 bg-current transition-all duration-200 ${open ? '-translate-y-2 -rotate-45' : ''}`} />
+                <span className={`block h-px w-5 bg-current transition-all duration-200 ${open ? 'translate-y-2 rotate-45' : ''}`} aria-hidden="true" />
+                <span className={`block h-px w-5 bg-current transition-all duration-200 ${open ? 'opacity-0' : ''}`} aria-hidden="true" />
+                <span className={`block h-px w-5 bg-current transition-all duration-200 ${open ? '-translate-y-2 -rotate-45' : ''}`} aria-hidden="true" />
             </button>
 
             {/* Drawer */}
             {open && (
-                <div className="absolute left-0 right-0 top-14 z-50 border-b border-dashed border-zinc-800 bg-zinc-950 px-4 py-6 flex flex-col gap-4">
+                <nav
+                    id="mobile-nav-drawer"
+                    ref={drawerRef}
+                    aria-label="Navigation mobile"
+                    className="absolute left-0 right-0 top-14 z-50 border-b border-dashed border-zinc-800 bg-zinc-950 px-4 py-6 flex flex-col gap-4"
+                    role="navigation"
+                >
                     {links.map((link) => (
                         <Link
                             key={link.href}
@@ -62,7 +94,7 @@ export function NavMobile({ links, isLoggedIn }: { links: NavLink[]; isLoggedIn?
                             </>
                         )}
                     </div>
-                </div>
+                </nav>
             )}
         </div>
     );

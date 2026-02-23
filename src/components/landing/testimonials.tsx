@@ -54,7 +54,7 @@ export async function Testimonials() {
     }
 
     return (
-        <section className="relative py-20 lg:py-28 overflow-hidden">
+        <section aria-labelledby="testimonials-heading" className="relative py-20 lg:py-28 overflow-hidden">
             {/* Gradient background */}
             <div
                 className="absolute inset-0 opacity-[0.03]"
@@ -68,7 +68,7 @@ export async function Testimonials() {
             <div className="relative mx-auto max-w-6xl px-4 lg:px-8">
                 <div className="text-center mb-12">
                     <CoordLabel text="[AVIS // 00.08]" className="mb-4 block" />
-                    <h2 className="text-2xl font-bold tracking-tight text-white sm:text-3xl">
+                    <h2 id="testimonials-heading" className="text-2xl font-bold tracking-tight text-white sm:text-3xl">
                         Ce que disent les{' '}
                         <span className="text-sky-400">créateurs</span>
                     </h2>
@@ -78,7 +78,9 @@ export async function Testimonials() {
                 </div>
 
                 {/* Marquee testimonials */}
-                <TestimonialsClient items={items} />
+                <div aria-label="Témoignages de créateurs" role="region">
+                    <TestimonialsClient items={items} />
+                </div>
             </div>
         </section>
     );

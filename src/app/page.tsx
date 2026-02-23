@@ -39,7 +39,7 @@ export default function HomePage() {
         dangerouslySetInnerHTML={{ __html: JSON.stringify(softwareSchema) }}
       />
       <Nav />
-      <main>
+      <main id="main-content">
         <Hero />
         <TrustBar />
         <Features />

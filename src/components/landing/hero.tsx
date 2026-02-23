@@ -41,7 +41,7 @@ const scaleIn = {
  */
 export function Hero() {
     return (
-        <section className="relative overflow-hidden bg-zinc-950 pt-20 pb-16 lg:pt-28 lg:pb-24">
+        <section aria-labelledby="hero-heading" className="relative overflow-hidden bg-zinc-950 pt-20 pb-16 lg:pt-28 lg:pb-24">
             <Particles quantity={50} color="#38bdf8" speed={0.2} />
             <MouseGlow />
 
@@ -68,6 +68,7 @@ export function Hero() {
 
                 {/* Headline */}
                 <motion.h1
+                    id="hero-heading"
                     className="text-4xl font-bold tracking-tighter text-white sm:text-5xl lg:text-7xl leading-[1.05] text-balance mb-6"
                     variants={fadeUp}
                 >
@@ -112,7 +113,7 @@ export function Hero() {
                         variant="outline"
                         className="border-dashed border-sky-400/30 text-white bg-sky-400 font-normal px-3 py-1 text-xs"
                     >
-                        <Sparkles className="inline h-3 w-3" /> Trial 7 jours Premium offert à l&apos;inscription
+                        <Sparkles className="inline h-3 w-3" aria-hidden="true" /> Trial 7 jours Premium offert \u00e0 l&apos;inscription
                     </Badge>
                 </motion.div>
 

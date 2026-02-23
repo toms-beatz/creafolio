@@ -122,7 +122,7 @@ function SaveIndicator({ status }: { status: SaveStatus }) {
     };
     const { text, color, icon } = map[status];
     return (
-        <span className={`flex items-center gap-1.5 text-[10px] font-mono ${color}`}>
+        <span className={`flex items-center gap-1.5 text-[10px] font-mono ${color}`} role="status" aria-live="polite">
             {icon} {text}
         </span>
     );
@@ -136,11 +136,13 @@ function BlockSettingsTabBar({ active, onChange }: { active: BlockTab; onChange:
         { id: 'avance', label: 'Avancé' },
     ];
     return (
-        <div className="flex border-b border-zinc-800">
+        <div className="flex border-b border-zinc-800" role="tablist" aria-label="Paramètres du bloc">
             {tabs.map(({ id, label }) => (
                 <button
                     key={id}
                     onClick={() => onChange(id)}
+                    role="tab"
+                    aria-selected={active === id}
                     className={`flex-1 py-2.5 text-[10px] font-semibold uppercase tracking-widest transition-colors ${active === id
                         ? 'border-b-2 border-sky-400 text-sky-400'
                         : 'text-zinc-500 hover:text-zinc-300'
@@ -193,8 +195,8 @@ function Navigator() {
                         (actions as any).setNodeEvent('selected', node.id);
                     }}
                     className={`group flex w-full items-center gap-2 rounded-lg px-2 py-2 text-left text-xs transition-colors ${node.id === selectedId
-                            ? 'bg-sky-500/15 text-sky-300'
-                            : 'text-zinc-400 hover:bg-zinc-800 hover:text-white'
+                        ? 'bg-sky-500/15 text-sky-300'
+                        : 'text-zinc-400 hover:bg-zinc-800 hover:text-white'
                         }`}
                 >
                     <span className="w-4 shrink-0 text-center font-mono text-[9px] text-zinc-600">
@@ -202,8 +204,8 @@ function Navigator() {
                     </span>
                     <div
                         className={`h-1.5 w-1.5 shrink-0 rounded-full transition-colors ${node.id === selectedId
-                                ? 'bg-sky-400'
-                                : 'bg-zinc-600 group-hover:bg-zinc-400'
+                            ? 'bg-sky-400'
+                            : 'bg-zinc-600 group-hover:bg-zinc-400'
                             }`}
                     />
                     <span className="flex-1 truncate">{node.name}</span>
@@ -261,8 +263,9 @@ function LeftPanel({
                         onClick={() => actions.clearEvents()}
                         className="flex h-8 w-8 shrink-0 items-center justify-center rounded-md text-zinc-400 hover:bg-zinc-800 hover:text-white transition-colors"
                         title="Retour aux éléments"
+                        aria-label="Retour aux éléments"
                     >
-                        <ChevronLeft className="h-4 w-4" />
+                        <ChevronLeft className="h-4 w-4" aria-hidden="true" />
                     </button>
                     <div className="flex flex-1 items-center gap-2 overflow-hidden">
                         <div className="h-1.5 w-1.5 rounded-full bg-sky-400 shrink-0" />
@@ -272,13 +275,14 @@ function LeftPanel({
                         onClick={() => actions.delete(selected.id)}
                         className="flex h-8 w-8 shrink-0 items-center justify-center rounded-md text-zinc-600 hover:bg-red-500/10 hover:text-red-400 transition-colors"
                         title="Supprimer le bloc"
+                        aria-label="Supprimer le bloc"
                     >
-                        <Trash2 className="h-3.5 w-3.5" />
+                        <Trash2 className="h-3.5 w-3.5" aria-hidden="true" />
                     </button>
                 </div>
             ) : (
                 /* Default: tab bar */
-                <div className="flex h-12 shrink-0 items-stretch border-b border-zinc-800">
+                <div className="flex h-12 shrink-0 items-stretch border-b border-zinc-800" role="tablist" aria-label="Panneaux du builder">
                     {([
                         { id: 'elements' as PanelTab, icon: <Layers className="h-4 w-4" />, label: 'Blocs' },
                         { id: 'theme' as PanelTab, icon: <Palette className="h-4 w-4" />, label: 'Thème' },
@@ -287,6 +291,8 @@ function LeftPanel({
                         <button
                             key={id}
                             onClick={() => setPanelTab(id)}
+                            role="tab"
+                            aria-selected={panelTab === id}
                             className={`flex flex-1 flex-col items-center justify-center gap-0.5 text-[9px] font-semibold uppercase tracking-widest transition-colors ${panelTab === id
                                 ? 'border-b-2 border-sky-400 text-sky-400'
                                 : 'text-zinc-500 hover:text-zinc-300'
@@ -473,17 +479,19 @@ function BuilderInner({
                     <div className="flex items-center gap-0.5">
                         <button
                             title="Annuler (Cmd+Z)"
+                            aria-label="Annuler"
                             onClick={() => actions.history.undo()}
                             className="flex h-7 w-7 items-center justify-center rounded-md text-zinc-500 hover:bg-zinc-800 hover:text-white transition-colors"
                         >
-                            <Undo2 className="h-3.5 w-3.5" />
+                            <Undo2 className="h-3.5 w-3.5" aria-hidden="true" />
                         </button>
                         <button
                             title="Rétablir (Cmd+Shift+Z)"
+                            aria-label="Rétablir"
                             onClick={() => actions.history.redo()}
                             className="flex h-7 w-7 items-center justify-center rounded-md text-zinc-500 hover:bg-zinc-800 hover:text-white transition-colors"
                         >
-                            <Redo2 className="h-3.5 w-3.5" />
+                            <Redo2 className="h-3.5 w-3.5" aria-hidden="true" />
                         </button>
                     </div>
                     <span className="text-zinc-800">|</span>
@@ -501,7 +509,7 @@ function BuilderInner({
 
             {/* ── Mobile warning ────────────────────────────────────── */}
             <div className="flex flex-col items-center justify-center gap-4 p-8 text-center md:hidden">
-                <Monitor className="h-10 w-10 text-zinc-600" />
+                <Monitor className="h-10 w-10 text-zinc-600" aria-hidden="true" />
                 <p className="text-base font-semibold text-white">Builder desktop uniquement</p>
                 <p className="text-sm text-zinc-400">Reconnecte-toi depuis ton ordinateur.</p>
             </div>
@@ -576,14 +584,16 @@ function BuilderInner({
                     {/* ── Viewport switcher — bottom center, Elementor style ── */}
                     <div className="relative flex h-10 shrink-0 items-center justify-center gap-0.5 border-t border-zinc-700/50 bg-zinc-900/60">
                         {([
-                            { id: 'desktop' as Viewport, icon: <Monitor className="h-4 w-4" />, label: 'Desktop' },
-                            { id: 'tablet' as Viewport, icon: <Tablet className="h-4 w-4" />, label: 'Tablette' },
-                            { id: 'mobile' as Viewport, icon: <Smartphone className="h-4 w-4" />, label: 'Mobile' },
+                            { id: 'desktop' as Viewport, icon: <Monitor className="h-4 w-4" aria-hidden="true" />, label: 'Desktop' },
+                            { id: 'tablet' as Viewport, icon: <Tablet className="h-4 w-4" aria-hidden="true" />, label: 'Tablette' },
+                            { id: 'mobile' as Viewport, icon: <Smartphone className="h-4 w-4" aria-hidden="true" />, label: 'Mobile' },
                         ]).map(({ id, icon, label }) => (
                             <button
                                 key={id}
                                 onClick={() => setViewport(id)}
                                 title={label}
+                                aria-label={`Vue ${label}`}
+                                aria-pressed={viewport === id}
                                 className={`flex h-8 items-center gap-1.5 rounded-md px-3 text-[10px] font-medium transition-colors ${viewport === id
                                     ? 'bg-zinc-700 text-white'
                                     : 'text-zinc-500 hover:bg-zinc-800 hover:text-zinc-300'
@@ -601,8 +611,8 @@ function BuilderInner({
                                 target="_blank"
                                 className="flex items-center gap-1 text-[10px] text-zinc-600 hover:text-sky-400 transition-colors"
                             >
-                                <ExternalLink className="h-3 w-3" />
-                                Aperçu complet
+                                <ExternalLink className="h-3 w-3" aria-hidden="true" />
+                                Aperçu complet<span className="sr-only"> (ouvre dans un nouvel onglet)</span>
                             </Link>
                         </div>
                     </div>

@@ -39,10 +39,15 @@ export function CookieConsent() {
     if (!visible) return null;
 
     return (
-        <div className="fixed bottom-0 inset-x-0 z-[100] p-4 animate-in slide-in-from-bottom-4 duration-300">
+        <div
+            role="dialog"
+            aria-label="Gestion des cookies"
+            aria-modal="false"
+            className="fixed bottom-0 inset-x-0 z-[100] p-4 animate-in slide-in-from-bottom-4 duration-300"
+        >
             <div className="mx-auto max-w-2xl rounded-xl border border-dashed border-zinc-700 bg-zinc-950/95 backdrop-blur-sm p-5 shadow-2xl">
                 <p className="text-sm text-zinc-300 leading-relaxed mb-1">
-                    <span className="font-mono text-[9px] text-sky-400/60 tracking-widest mr-2 inline-flex items-center gap-1"><Shield className="h-3 w-3" /> RGPD</span>
+                    <span className="font-mono text-[9px] text-sky-400/60 tracking-widest mr-2 inline-flex items-center gap-1"><Shield className="h-3 w-3" aria-hidden="true" /> RGPD</span>
                     Blooprint utilise des cookies essentiels (session d&apos;authentification) et des cookies d&apos;analyse
                     pour améliorer ton expérience. Les cookies essentiels sont indispensables au fonctionnement du site.
                 </p>
@@ -52,16 +57,16 @@ export function CookieConsent() {
                         Politique de Confidentialité
                     </Link>.
                 </p>
-                <div className="flex items-center gap-3">
+                <div className="flex items-center gap-3" role="group" aria-label="Choix cookies">
                     <button
                         onClick={() => handleChoice('accepted')}
-                        className="rounded-lg bg-sky-400 px-4 py-2 text-xs font-semibold text-zinc-950 hover:bg-sky-300 transition-colors"
+                        className="rounded-lg bg-sky-400 px-4 py-2 text-xs font-semibold text-zinc-950 hover:bg-sky-300 transition-colors focus:outline-none focus:ring-2 focus:ring-sky-300 focus:ring-offset-2 focus:ring-offset-zinc-950"
                     >
                         Accepter tout
                     </button>
                     <button
                         onClick={() => handleChoice('refused')}
-                        className="rounded-lg border border-dashed border-zinc-700 px-4 py-2 text-xs font-medium text-zinc-400 hover:text-white hover:border-zinc-500 transition-colors"
+                        className="rounded-lg border border-dashed border-zinc-700 px-4 py-2 text-xs font-medium text-zinc-400 hover:text-white hover:border-zinc-500 transition-colors focus:outline-none focus:ring-2 focus:ring-zinc-400 focus:ring-offset-2 focus:ring-offset-zinc-950"
                     >
                         Refuser tout
                     </button>

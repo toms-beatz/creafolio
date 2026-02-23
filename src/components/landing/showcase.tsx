@@ -34,7 +34,7 @@ export async function Showcase() {
     const usernameMap = new Map((profiles ?? []).map((p) => [p.id, p.username]));
 
     return (
-        <section id="showcase" className="relative py-20 lg:py-28">
+        <section id="showcase" aria-labelledby="showcase-heading" className="relative py-20 lg:py-28">
             {/* Dot pattern background */}
             <div
                 className="absolute inset-0 opacity-[0.03]"
@@ -49,7 +49,7 @@ export async function Showcase() {
                 {/* Header */}
                 <ShowcaseHeader>
                     <CoordLabel text="[APERÇU // 00.05]" className="mb-4 block" />
-                    <h2 className="text-2xl font-bold tracking-tight text-white sm:text-3xl">
+                    <h2 id="showcase-heading" className="text-2xl font-bold tracking-tight text-white sm:text-3xl">
                         Des portfolios UGC{' '}
                         <span className="text-sky-400">créés avec Blooprint</span>
                     </h2>
@@ -64,7 +64,7 @@ export async function Showcase() {
                             const username = usernameMap.get(p.user_id) ?? 'Créateur UGC';
                             return (
                                 <ShowcaseCard key={p.slug}>
-                                    <Link href={`/${p.slug}`} target="_blank" rel="noopener noreferrer" className="group block">
+                                    <Link href={`/${p.slug}`} target="_blank" rel="noopener noreferrer" className="group block" aria-label={`Voir le portfolio de ${username}: ${p.title}`}>
                                         <div className="rounded-xl border border-zinc-800 bg-zinc-900/40 overflow-hidden transition-all duration-300 hover:border-sky-400/30 hover:shadow-[0_0_40px_-10px_rgba(56,189,248,0.08)]">
                                             {/* Browser frame */}
                                             <div className="flex items-center gap-2 px-4 py-2.5 border-b border-zinc-800/80 bg-zinc-900/60">
@@ -81,7 +81,7 @@ export async function Showcase() {
                                                         <span className="text-sky-400/80">{p.slug}</span>
                                                     </div>
                                                 </div>
-                                                <ExternalLink className="h-3 w-3 text-zinc-700 group-hover:text-zinc-500 transition-colors" />
+                                                <ExternalLink className="h-3 w-3 text-zinc-700 group-hover:text-zinc-500 transition-colors" aria-hidden="true" />
                                             </div>
 
                                             {/* Content preview area */}
@@ -108,7 +108,7 @@ export async function Showcase() {
                                                 {/* Hover overlay */}
                                                 <div className="absolute inset-0 flex items-center justify-center bg-zinc-950/60 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
                                                     <span className="flex items-center gap-2 rounded-full border border-sky-400/30 bg-sky-400/10 px-4 py-2 text-xs font-medium text-sky-400">
-                                                        <Eye className="h-3.5 w-3.5" />
+                                                        <Eye className="h-3.5 w-3.5" aria-hidden="true" />
                                                         Voir le portfolio
                                                     </span>
                                                 </div>
@@ -149,7 +149,7 @@ export async function Showcase() {
                                 </div>
                                 {/* Empty state */}
                                 <div className="flex flex-col items-center justify-center py-16 px-6 text-center">
-                                    <Sparkles className="h-8 w-8 text-sky-400/20 mb-4" />
+                                    <Sparkles className="h-8 w-8 text-sky-400/20 mb-4" aria-hidden="true" />
                                     <p className="text-sm text-zinc-500 mb-1">
                                         Les premiers portfolios arrivent bientôt.
                                     </p>

@@ -28,7 +28,7 @@ export function MobileBottomNav({ items }: MobileBottomNavProps) {
     };
 
     return (
-        <nav className="fixed bottom-0 inset-x-0 z-50 border-t border-dashed border-zinc-800 bg-zinc-950/95 backdrop-blur-sm md:hidden">
+        <nav aria-label="Navigation mobile" className="fixed bottom-0 inset-x-0 z-50 border-t border-dashed border-zinc-800 bg-zinc-950/95 backdrop-blur-sm md:hidden">
             <div className="flex items-stretch">
                 {items.map((item) => {
                     const active = isActive(item.href);
@@ -36,6 +36,7 @@ export function MobileBottomNav({ items }: MobileBottomNavProps) {
                         <Link
                             key={item.id}
                             href={item.href}
+                            aria-current={active ? 'page' : undefined}
                             className={`flex flex-1 flex-col items-center justify-center gap-0.5 py-2.5 text-[10px] font-medium transition-colors ${active
                                 ? 'text-sky-400'
                                 : 'text-zinc-500 active:text-zinc-300'

@@ -25,8 +25,8 @@ export function TestimonialsClient({ items }: { items: TestimonialItem[] }) {
     return (
         <div className="relative space-y-4">
             {/* Fade edges */}
-            <div className="pointer-events-none absolute left-0 top-0 z-10 h-full w-20 bg-gradient-to-r from-zinc-950 to-transparent" />
-            <div className="pointer-events-none absolute right-0 top-0 z-10 h-full w-20 bg-gradient-to-l from-zinc-950 to-transparent" />
+            <div className="pointer-events-none absolute left-0 top-0 z-10 h-full w-20 bg-gradient-to-r from-zinc-950 to-transparent" aria-hidden="true" />
+            <div className="pointer-events-none absolute right-0 top-0 z-10 h-full w-20 bg-gradient-to-l from-zinc-950 to-transparent" aria-hidden="true" />
 
             {/* Row 1 — left to right */}
             <Marquee duration={35} pauseOnHover repeat={3} className="[--gap:1.5rem]">

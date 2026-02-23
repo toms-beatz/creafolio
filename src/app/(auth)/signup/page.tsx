@@ -20,7 +20,7 @@ export default function SignupPage() {
             </h1>
             <p className="mb-6 text-sm text-zinc-400">
                 7 jours Premium offerts — sans carte bancaire.
-                <span className="ml-1 font-mono text-[10px] text-sky-400/60 tracking-widest inline-flex items-center gap-0.5"><Sparkles className="h-3 w-3" /> PLAN-001</span>
+                <span className="ml-1 font-mono text-[10px] text-sky-400/60 tracking-widest inline-flex items-center gap-0.5"><Sparkles className="h-3 w-3" aria-hidden="true" /> PLAN-001</span>
             </p>
 
             <form action={formAction} className="flex flex-col gap-4">
@@ -87,6 +87,7 @@ export default function SignupPage() {
                         name="cgu"
                         type="checkbox"
                         required
+                        aria-required="true"
                         className="mt-0.5 h-4 w-4 rounded border-zinc-700 bg-zinc-900 text-sky-400 focus:ring-sky-400/50"
                     />
                     <label htmlFor="cgu" className="text-xs text-zinc-500 leading-relaxed">

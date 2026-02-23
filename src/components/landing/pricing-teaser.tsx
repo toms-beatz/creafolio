@@ -35,7 +35,7 @@ export function PricingTeaser() {
     const annualMonthly = Math.round((79 / 12) * 100) / 100; // ~6.58
 
     return (
-        <section className="relative py-20 lg:py-28 overflow-hidden">
+        <section aria-labelledby="pricing-heading" className="relative py-20 lg:py-28 overflow-hidden">
             {/* Gradient orbs */}
             <div
                 className="absolute -top-40 -right-40 w-[500px] h-[500px] rounded-full pointer-events-none opacity-[0.04]"
@@ -51,15 +51,17 @@ export function PricingTeaser() {
                 {/* Header */}
                 <FadeIn className="mb-10 text-center">
                     <CoordLabel text="[PLANS // 00.06]" className="mb-4 block" />
-                    <h2 className="text-2xl font-bold tracking-tight text-white sm:text-3xl">
+                    <h2 id="pricing-heading" className="text-2xl font-bold tracking-tight text-white sm:text-3xl">
                         Simple.{' '}
                         <span className="text-sky-400">Transparent.</span>
                     </h2>
 
                     {/* Toggle mensuel / annuel */}
-                    <div className="mt-6 inline-flex items-center gap-3 rounded-full border border-dashed border-zinc-700 bg-zinc-900 p-1">
+                    <div className="mt-6 inline-flex items-center gap-3 rounded-full border border-dashed border-zinc-700 bg-zinc-900 p-1" role="radiogroup" aria-label="Période de facturation">
                         <button
                             onClick={() => setAnnual(false)}
+                            role="radio"
+                            aria-checked={!annual}
                             className={`rounded-full px-5 py-1.5 text-xs font-medium transition-all ${!annual ? 'bg-zinc-700 text-white shadow' : 'text-zinc-500 hover:text-zinc-300'
                                 }`}
                         >
@@ -67,6 +69,8 @@ export function PricingTeaser() {
                         </button>
                         <button
                             onClick={() => setAnnual(true)}
+                            role="radio"
+                            aria-checked={annual}
                             className={`flex items-center gap-1.5 rounded-full px-5 py-1.5 text-xs font-medium transition-all ${annual ? 'bg-zinc-700 text-white shadow' : 'text-zinc-500 hover:text-zinc-300'
                                 }`}
                         >
@@ -116,7 +120,7 @@ export function PricingTeaser() {
                             {/* Badge */}
                             <div className="absolute -top-3.5 left-1/2 -translate-x-1/2">
                                 <Badge className="bg-sky-400 text-zinc-950 font-semibold text-[10px] px-3 border-0 uppercase tracking-wider">
-                                    <Sparkles className="inline h-3 w-3 mr-1.5" />Recommandé
+                                    <Sparkles className="inline h-3 w-3 mr-1.5" aria-hidden="true" />Recommandé
                                 </Badge>
                             </div>
 
@@ -135,7 +139,7 @@ export function PricingTeaser() {
                             <ul className="flex flex-col gap-3 mb-10 flex-1">
                                 {premiumFeatures.map((f) => (
                                     <li key={f} className="flex items-center gap-2.5 text-sm text-zinc-200">
-                                        <span className="text-sky-400 shrink-0"><Check className="h-3.5 w-3.5" /></span>
+                                        <span className="text-sky-400 shrink-0" aria-hidden="true"><Check className="h-3.5 w-3.5" /></span>
                                         {f}
                                     </li>
                                 ))}
@@ -145,7 +149,7 @@ export function PricingTeaser() {
                                 asChild
                                 className="w-full bg-sky-400 text-zinc-950 hover:bg-sky-300 font-semibold shadow-lg shadow-sky-400/20"
                             >
-                                <Link href="/signup">Essai 7 jours gratuit <ArrowRight className="inline h-3 w-3" /></Link>
+                                <Link href="/signup">Essai 7 jours gratuit <ArrowRight className="inline h-3 w-3" aria-hidden="true" /></Link>
                             </Button>
                         </div>
                     </StaggerItem>
@@ -154,7 +158,7 @@ export function PricingTeaser() {
                 {/* Lien vers pricing complet */}
                 <p className="mt-6 text-center text-xs text-zinc-600">
                     <Link href="/pricing" className="hover:text-zinc-400 transition-colors underline underline-offset-2">
-                        Voir tous les détails <ArrowRight className="inline h-3 w-3" />
+                        Voir tous les détails <ArrowRight className="inline h-3 w-3" aria-hidden="true" />
                     </Link>
                 </p>
             </div>

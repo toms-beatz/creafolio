@@ -11,7 +11,12 @@ export function Label({ children, required, className = '', ...props }: LabelPro
             {...props}
         >
             {children}
-            {required && <span className="ml-1 text-sky-400/70" aria-hidden="true">*</span>}
+            {required && (
+                <>
+                    <span className="ml-1 text-sky-400/70" aria-hidden="true">*</span>
+                    <span className="sr-only"> (obligatoire)</span>
+                </>
+            )}
         </label>
     );
 }

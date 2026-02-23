@@ -89,7 +89,7 @@ export default async function DashboardLayout({
     return (
         <div className="min-h-screen bg-zinc-950 text-white flex">
             {/* Sidebar — hidden on mobile */}
-            <aside className="hidden md:flex w-56 shrink-0 border-r border-dashed border-zinc-800 bg-zinc-950 flex-col sticky top-0 h-screen">
+            <aside aria-label="Menu du tableau de bord" className="hidden md:flex w-56 shrink-0 border-r border-dashed border-zinc-800 bg-zinc-950 flex-col sticky top-0 h-screen">
                 {/* Logo */}
                 <div className="flex items-center gap-2 px-4 h-14 border-b border-dashed border-zinc-800">
                     <Link href="/" className="text-base font-bold tracking-tight">
@@ -113,7 +113,7 @@ export default async function DashboardLayout({
                 </div>
 
                 {/* Nav */}
-                <nav className="flex-1 px-3 py-4 space-y-1">
+                <nav aria-label="Navigation dashboard" className="flex-1 px-3 py-4 space-y-1">
                     {dashboardNav.map((item) => (
                         <Link
                             key={item.id}
@@ -191,7 +191,7 @@ export default async function DashboardLayout({
                     </div>
                 </header>
 
-                <main className="flex-1 p-4 md:p-6 pb-20 md:pb-6">{children}</main>
+                <main id="main-content" className="flex-1 p-4 md:p-6 pb-20 md:pb-6">{children}</main>
             </div>
 
             {/* Mobile bottom nav */}
