@@ -11,6 +11,8 @@ const productLinks = [
 
 const legalLinks = [
     { label: 'CGU', href: '/legal/cgu' },
+    { label: 'CGV', href: '/legal/cgv' },
+    { label: 'Charte', href: '/legal/charter' },
     { label: 'Confidentialité', href: '/legal/privacy' },
     { label: 'Support', href: '/support' },
     { label: 'Contact', href: 'mailto:hello@blooprint.fr' },
