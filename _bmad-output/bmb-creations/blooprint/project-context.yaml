@@ -1,0 +1,374 @@
+---
+project_name: "blooprint"
+domain: "SaaS - Portfolio Builder"
+subdomain: "UGC Creators"
+description: "Builder de portfolio drag & drop pour créateurs UGC. Solution freemium permettant aux créateurs de contenu (TikTok, Instagram) de créer des portfolios professionnels pour démarcher des marques."
+maturity_level: "idea"
+timeline_mvp: "3-4 mois"
+team_size: 1
+team_composition:
+  - role: "Fullstack Developer"
+    name: "TOM$"
+    skills: ["React", "Laravel", "Next.js (front)", "TypeScript"]
+effort_weekly: "20 heures"
+methodology: "BMAD Agile"
+
+# PROBLÈME & SOLUTION
+problem_statement: "Les créateurs UGC utilisent Canva ou Notion pour leurs portfolios, résultant en des présentations visuellement médiocres, sans SEO, et non professionnelles. La barrière technique pour créer un vrai site web est trop élevée."
+solution_statement: "Blooprint offre un builder drag & drop simple, des templates professionnels par niche, un SEO natif optimisé, et un modèle freemium accessible."
+root_cause_5whys: "Les créateurs UGC veulent des revenus via collaborations marques, mais les outils actuels (Canva = pas SEO/amateur, Webflow = cher/complexe) ne permettent pas de créer des portfolios pro facilement. La cause racine est la complexité technique de créer un site web performant et optimisé SEO."
+
+# STACK TECHNIQUE
+stack_tech:
+  frontend:
+    - "Next.js 14+ (App Router)"
+    - "React 18+"
+    - "TypeScript"
+    - "Tailwind CSS"
+    - "Craft.js (visual builder drag & drop)"
+  backend:
+    - "Next.js API Routes"
+    - "Supabase (PostgreSQL, Auth, Storage, Realtime)"
+  integrations:
+    - "Stripe (billing, webhooks, subscriptions)"
+    - "Next.js Image Optimization"
+  infrastructure:
+    - "Vercel (hosting, edge functions)"
+    - "Git workflow"
+  constraints:
+    - "Budget: 0€ (side project)"
+    - "Pas de Docker en MVP"
+    - "Solo dev"
+
+# MODÈLE ÉCONOMIQUE (FREEMIUM)
+business_model:
+  type: "Freemium SaaS"
+  free_tier:
+    portfolios: 1
+    composants_max: 6
+    storage: "500MB"
+    custom_domain: false
+    watermark: true
+    analytics: "Basiques (vues)"
+    url: "blooprint.fr/username"
+  premium_tier:
+    price_monthly: "9€"
+    price_yearly: "79€"
+    portfolios: "3-5"
+    composants_max: "Illimité"
+    storage: "5GB"
+    custom_domain: true
+    watermark: false
+    analytics: "Avancées (visiteurs uniques, taux clic, sources)"
+    url: "Custom domain + blooprint.fr/username"
+  trial: "7 jours Premium automatique"
+  refund_policy: "14 jours satisfait ou remboursé"
+
+# OBJECTIFS MVP
+goals:
+  users_target: 10
+  portfolios_target: 10
+  revenue_target: "Premiers revenus avec refund policy"
+  success_criteria:
+    - "Engagement utilisateurs (portfolios visités/utilisés)"
+    - "Feedback positif des early adopters"
+    - "Validation concept (UGC creators trouvent valeur)"
+
+# GLOSSAIRE MÉTIER (8 concepts - RG-PRJ-002 ✓)
+glossaire:
+  portfolio:
+    definition: "Site web mono-page d'un créateur UGC présentant ses projets, collaborations, stats et contact pour démarcher des marques."
+    synonyms: []
+    examples: ["blooprint.fr/john-ugc"]
+    note: "1 portfolio = 1 site. Multi-pages prévu V2+."
+  
+  createur:
+    definition: "Utilisateur de Blooprint. Créateur de contenu UGC (vidéos, photos) qui collabore avec des marques contre rémunération."
+    synonyms: ["Creator", "Content Creator", "UGC Creator"]
+    examples: ["Créateur TikTok spécialisé beauté", "Instagrameur lifestyle"]
+  
+  template:
+    definition: "Design complet de portfolio (couleurs, typographie, layout, structure) personnalisable via le visual builder."
+    synonyms: ["Theme", "Design"]
+    examples: ["Template UGC Minimalist", "Template UGC Bold"]
+    note: "MVP = 1 template unique optimisé UGC"
+  
+  composant:
+    definition: "Bloc fonctionnel drag & drop du builder (ex: Hero, Video Showcase, Before/After). Le créateur les assemble pour construire son portfolio."
+    synonyms: ["Component", "Bloc"]
+    examples: ["Hero", "About Me", "Portfolio Grid", "Video Showcase", "Stats", "Testimonials", "Contact"]
+  
+  collaboration:
+    definition: "Projet rémunéré entre un créateur UGC et une marque. Une collaboration peut contenir plusieurs contenus (vidéos/photos)."
+    synonyms: ["Collab", "Brand Deal", "Partnership", "Sponsorship"]
+    examples: ["Vidéo TikTok pour marque cosmétique", "Série Instagram Stories pour marque mode"]
+  
+  marque:
+    definition: "Entreprise cliente du créateur UGC pour qui il produit du contenu."
+    synonyms: ["Brand", "Client"]
+    examples: ["Marque cosmétique", "Brand e-commerce", "Startup tech"]
+  
+  stats:
+    definition: "Données de performance du créateur (vues, engagement, followers, conversions) présentées dans le portfolio pour prouver son impact."
+    synonyms: ["Metrics", "Analytics", "KPIs"]
+    examples: ["1M vues TikTok", "Engagement rate 8%", "50K followers Instagram"]
+  
+  publication:
+    definition: "Portfolio publié en ligne, accessible publiquement via URL personnalisée (blooprint.fr/username)."
+    synonyms: ["Live Portfolio", "Published Portfolio"]
+    statuts: ["Brouillon (dépublié)", "Publié (live)"]
+
+# ACTEURS (3)
+acteurs:
+  - name: "Créateur"
+    type: "utilisateur_principal"
+    description: "Utilisateur de Blooprint. Créateur de contenu UGC voulant un portfolio professionnel pour démarcher des marques."
+    permissions:
+      - "Créer compte (auth Supabase)"
+      - "Construire portfolio (drag & drop composants)"
+      - "Publier OU dépublier portfolio"
+      - "Supprimer portfolio (soft delete 30j)"
+      - "Upgrade/downgrade Premium"
+      - "Modifier username (avec warning liens cassés)"
+    statuts:
+      - "Free (1 portfolio, 6 composants, 500MB)"
+      - "Premium Trial (7 jours)"
+      - "Premium (3 portfolios, illimité)"
+  
+  - name: "Marque/Recruteur"
+    type: "visiteur_externe"
+    description: "Entreprise ou recruteur visitant un portfolio publié pour découvrir et contacter un créateur UGC."
+    permissions:
+      - "Visiter portfolio publié (public ou lien direct)"
+      - "Contacter créateur (liens externes MVP, formulaire V2+)"
+    interactions:
+      - "Découverte via blooprint.fr/username"
+      - "Analyse projets/stats du créateur"
+      - "Prise de contact"
+  
+  - name: "Admin Blooprint"
+    type: "système"
+    description: "TOM$ en tant qu'administrateur de la plateforme Blooprint."
+    permissions:
+      - "Gérer plateforme (monitoring, deploy)"
+      - "Modération contenu (review signalements)"
+      - "Support utilisateurs"
+      - "Bannissement (soft delete compte)"
+      - "Analytics globales"
+
+# PROCESSUS MÉTIER (8)
+processus_metier:
+  - name: "Onboarding Créateur"
+    description: "Inscription et setup initial d'un créateur sur Blooprint"
+    criticity: "high"
+    steps:
+      - "Créateur arrive sur blooprint.fr"
+      - "Signup (email + password via Supabase Auth)"
+      - "Confirmation email obligatoire"
+      - "Choix username (unique, 3-30 caractères, a-z 0-9 -)"
+      - "Trial Premium 7 jours activé automatiquement"
+      - "Choix template (1 template UGC disponible en MVP)"
+      - "Accès builder (pas d'onboarding guidé, tooltip minimal)"
+    edge_cases:
+      - "Email déjà utilisé → Erreur + suggestion login"
+      - "Username déjà pris → Erreur + suggestions alternatives"
+      - "Trial déjà utilisé (même email) → Pas de nouveau trial"
+  
+  - name: "Création Portfolio"
+    description: "Construction du portfolio via le builder Craft.js"
+    criticity: "critical"
+    steps:
+      - "Créateur accède au builder"
+      - "Template pré-chargé"
+      - "Drag & drop composants (max 6 en Free)"
+      - "Personnalisation (textes, images, couleurs)"
+      - "Auto-save toutes les X secondes"
+      - "Preview temps réel"
+      - "État = Brouillon (dépublié)"
+    edge_cases:
+      - "Free limite 6 composants → Warning + suggestion upgrade"
+      - "Upload image > 5MB → Erreur + compression suggérée"
+      - "Autosave échoue → LocalStorage backup"
+      - "Craft.js bug state → Recovery mécanisme"
+  
+  - name: "Publication Portfolio"
+    description: "Mise en ligne du portfolio avec URL publique"
+    criticity: "critical"
+    steps:
+      - "Créateur clique 'Publier'"
+      - "Validation: minimum 1 composant requis"
+      - "Warning si < 3 composants (portfolio vide)"
+      - "Username déjà défini (modifiable avec warning)"
+      - "(Premium) Option custom domain (V0.2+)"
+      - "Publication → blooprint.fr/username live"
+      - "SEO meta tags générés automatiquement"
+      - "Créateur reçoit lien public"
+    edge_cases:
+      - "Portfolio vide (0 composants) → Blocage publication"
+      - "< 3 composants → Warning mais autorisé"
+      - "Images non uploadées → Warning + publication possible"
+  
+  - name: "Visite Portfolio (Marque)"
+    description: "Consultation d'un portfolio publié par une marque/recruteur"
+    criticity: "medium"
+    steps:
+      - "Marque reçoit lien blooprint.fr/username"
+      - "Visite portfolio"
+      - "Consulte projets/collaborations/stats"
+      - "Clique liens externes (email, Instagram, TikTok)"
+      - "(Si analytics activées) Vue comptabilisée"
+    edge_cases:
+      - "Portfolio dépublié → 404 ou page 'Portfolio non disponible'"
+      - "Username changé → 404 (pas de redirection MVP)"
+  
+  - name: "Upgrade Premium"
+    description: "Passage de Free à Premium via Stripe"
+    criticity: "high"
+    steps:
+      - "Créateur clique 'Upgrade Premium'"
+      - "Page pricing (comparaison Free vs Premium)"
+      - "Choix Mensuel (9€) ou Annuel (79€)"
+      - "Stripe checkout"
+      - "Si en trial → Continue trial, paye à la fin"
+      - "Si après trial → Paiement immédiat"
+      - "Activation Premium instantanée"
+      - "Déblocage features (custom domain V0.2, analytics++, etc.)"
+    edge_cases:
+      - "Paiement échoue → Downgrade Free, email notification"
+      - "Trial expire + paiement échoue → Downgrade Free automatique"
+  
+  - name: "Dépublication"
+    description: "Créateur rend son portfolio privé"
+    criticity: "low"
+    steps:
+      - "Créateur clique 'Dépublier'"
+      - "Confirmation"
+      - "Portfolio status: draft (non accessible publiquement)"
+      - "Toujours éditable"
+  
+  - name: "Suppression Portfolio"
+    description: "Suppression définitive d'un portfolio"
+    criticity: "medium"
+    steps:
+      - "Créateur clique 'Supprimer'"
+      - "Confirmation modal 'Êtes-vous sûr ?'"
+      - "Soft delete: status 'deleted', invisible pour user"
+      - "Récupérable 30 jours via support"
+      - "Hard delete automatique après 30 jours"
+  
+  - name: "Downgrade Premium → Free"
+    description: "Annulation abonnement Premium"
+    criticity: "medium"
+    steps:
+      - "Utilisateur annule Premium"
+      - "Si > 1 portfolio: UI 'Choisissez 1 portfolio à garder'"
+      - "Autres portfolios: status 'suspended' (non accessibles)"
+      - "Re-upgrade Premium → Réactivation automatique portfolios suspendus"
+    edge_cases:
+      - "Downgrade au milieu du mois → Pas de prorata remboursement"
+      - "Portfolios suspendus > 6 mois → Warning suppression définitive"
+
+# RÈGLES DE GESTION (11)
+regles_gestion:
+  - id: "RG-001"
+    description: "Username unique, alphanumérique + tirets, 3-30 caractères, modifiable avec warning"
+    priority: "critical"
+    validation: "Format: /^[a-z0-9-]{3,30}$/ | Unique globalement | Pas de redirection si changé"
+  
+  - id: "RG-002"
+    description: "1 email = 1 compte, confirmation obligatoire, changement email = re-confirmation"
+    priority: "critical"
+    validation: "Email format valide | Confirmation via lien email"
+  
+  - id: "RG-003"
+    description: "Trial Premium 7 jours automatique, 1 seul trial par email"
+    priority: "high"
+    validation: "Détection multi-comptes (email) pour éviter re-trials"
+  
+  - id: "RG-004"
+    description: "Free: 1 portfolio | Premium: 3 portfolios max"
+    priority: "high"
+    validation: "Blocage création si limite atteinte | Suggestion upgrade"
+  
+  - id: "RG-005"
+    description: "Free: 6 composants max | Premium: Illimité"
+    priority: "medium"
+    validation: "Drag & drop bloqué si limite atteinte Free | Warning + CTA upgrade"
+  
+  - id: "RG-006"
+    description: "Free: 500MB storage | Premium: 5GB storage | Images max 5MB, compression auto"
+    priority: "high"
+    validation: "Upload bloqué si quota dépassé | Formats: JPG, PNG, WebP, GIF | Vidéos: liens externes MVP"
+    regulatory: false
+  
+  - id: "RG-007"
+    description: "Custom domain Premium uniquement, 1 domain principal/portfolio, sous-domaines possibles"
+    priority: "medium"
+    validation: "Validation DNS avant activation | Guide step-by-step | Feature V0.2+"
+  
+  - id: "RG-008"
+    description: "Publication: min 1 composant requis, warning si < 3 composants"
+    priority: "medium"
+    validation: "Blocage si 0 composants | Warning UX si < 3"
+  
+  - id: "RG-009"
+    description: "RGPD: Export données (JSON), suppression définitive compte, consentement cookies, CGU/CGV"
+    priority: "critical"
+    validation: "Bouton 'Exporter mes données' | Bouton 'Supprimer mon compte' | Cookie consent banner"
+    regulatory: true
+  
+  - id: "RG-010"
+    description: "Soft delete: status 'deleted', récupérable 30j via support, hard delete après 30j"
+    priority: "medium"
+    validation: "Cron job daily: hard delete si deleted_at > 30 jours"
+  
+  - id: "RG-011"
+    description: "Modération: CGU interdisent contenu illégal/NSFW/haineux, bouton 'Signaler', review manuelle admin"
+    priority: "high"
+    validation: "Système signalement basique | Review manuelle TOM$ | Bannissement possible"
+
+# EDGE CASES & CONTRAINTES
+edge_cases:
+  - "User uploade 100 images énormes → Limite 5MB/fichier + compression auto + quota 500MB Free"
+  - "Contenu illégal/NSFW → CGU + système signalement + modération manuelle"
+  - "Paiement Stripe échoue pendant trial → Downgrade Free automatique + email notification"
+  - "User change email → Re-confirmation obligatoire"
+  - "Race condition username (2 users même temps) → Transaction SQL, premier validé gagne"
+  - "Custom domain conflit → 1 domain = 1 portfolio unique (contrainte BDD)"
+  - "Downgrade au milieu du mois → Pas de prorata remboursement"
+  - "Craft.js state corruption → Recovery mécanisme + localStorage backup"
+  - "Limite anti-spam → Max 10 saves/minute (rate limiting)"
+
+# SCOPE MVP
+scope_mvp:
+  inclus:
+    - "1 template UGC optimisé"
+    - "8-10 composants essentiels (Hero, About, Portfolio Grid, Before/After, Video, Testimonials, Brands, Contact, Footer)"
+    - "Auth Supabase (email/password)"
+    - "Builder Craft.js (drag & drop)"
+    - "Autosave (debounced 2s)"
+    - "Preview temps réel"
+    - "Publication (blooprint.fr/username)"
+    - "Freemium (Free + Premium)"
+    - "Stripe billing (webhooks, subscriptions)"
+    - "Trial 7 jours"
+    - "Analytics basiques Free, avancées Premium"
+    - "Tooltip minimal onboarding"
+    - "SEO meta tags dynamiques"
+    - "Soft delete 30j"
+    - "RGPD compliance"
+  
+  exclus_v02_plus:
+    - "Custom domain (V0.2)"
+    - "Templates supplémentaires (V0.2)"
+    - "Composants additionnels (V0.2)"
+    - "Formulaire contact intégré (V0.2, MVP = liens externes)"
+    - "Onboarding interactif guidé (V0.2)"
+    - "Multi-pages portfolio (V2+)"
+    - "Autres niches (Devs, Designers) (V2+)"
+    - "Docker containerisation (Si besoin scaling)"
+
+created_at: "2026-02-09"
+created_by: "BYAN-TEST"
+interview_duration: "65 minutes"
+validation_status: "validated"
