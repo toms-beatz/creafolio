@@ -1,6 +1,6 @@
 /**
  * Template UGC par défaut — pré-chargé à la création d'un portfolio.
- * Structure sérialisée Craft.js : ROOT → [HeroBlock, AboutBlock, StatsBlock, GalleryBlock, ContactBlock, FooterBlock]
+ * Structure JSON : ROOT → [HeroBlock, AboutBlock, StatsBlock, GalleryBlock, ContactBlock, FooterBlock]
  */
 
 export function generateDefaultTemplate(): Record<string, unknown> {

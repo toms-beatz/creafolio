@@ -17,7 +17,7 @@ Crée, personnalise et publie un portfolio pro en quelques minutes — sans code
 
 ## Aperçu
 
-Creafolio est un SaaS **monorepo full-stack** permettant aux créateurs de contenu UGC de construire leur portfolio via un éditeur visuel drag & drop (Craft.js), de publier leur page sur un sous-domaine personnalisé et de gérer leurs abonnements via Stripe.
+Creafolio est un SaaS **monorepo full-stack** permettant aux créateurs de contenu UGC de construire leur portfolio via un éditeur visuel, de publier leur page sur un sous-domaine personnalisé et de gérer leurs abonnements via Stripe.
 
 ```
 ┌─────────────────────────────────────────────────────┐
@@ -42,17 +42,17 @@ Creafolio est un SaaS **monorepo full-stack** permettant aux créateurs de conte
 
 ## Stack technique
 
-| Couche | Technologie |
-|--------|-------------|
-| **Frontend** | Next.js 15 (App Router), React 18, TypeScript, Tailwind CSS |
-| **Éditeur visuel** | Craft.js (drag & drop) |
-| **Backend** | Laravel 11, Laravel Sanctum (auth API stateless) |
-| **Base de données** | PostgreSQL 16 |
-| **Auth / Storage** | Supabase (phase transitoire → Laravel natif) |
-| **Paiements** | Stripe (subscriptions, webhooks, portail client) |
-| **Emails** | Resend |
-| **Temps réel** | Laravel Reverb (WebSockets) |
-| **Infra** | Docker Compose (dev + prod), Nginx reverse proxy |
+| Couche              | Technologie                                                 |
+| ------------------- | ----------------------------------------------------------- |
+| **Frontend**        | Next.js 15 (App Router), React 18, TypeScript, Tailwind CSS |
+| **Éditeur visuel**  | Builder drag & drop (blocs personnalisables)                |
+| **Backend**         | Laravel 11, Laravel Sanctum (auth API stateless)            |
+| **Base de données** | PostgreSQL 16                                               |
+| **Auth / Storage**  | Supabase (phase transitoire → Laravel natif)                |
+| **Paiements**       | Stripe (subscriptions, webhooks, portail client)            |
+| **Emails**          | Resend                                                      |
+| **Temps réel**      | Laravel Reverb (WebSockets)                                 |
+| **Infra**           | Docker Compose (dev + prod), Nginx reverse proxy            |
 
 ---
 
@@ -86,25 +86,25 @@ make seed
 
 ### Variables d'environnement requises
 
-| Variable | Description |
-|----------|-------------|
-| `APP_KEY` | Généré via `php artisan key:generate` |
-| `NEXT_PUBLIC_SUPABASE_URL` | URL de ton projet Supabase |
-| `NEXT_PUBLIC_SUPABASE_ANON_KEY` | Clé anonyme Supabase |
-| `SUPABASE_SERVICE_ROLE_KEY` | Clé service Supabase (backend only) |
-| `STRIPE_SECRET_KEY` | Clé secrète Stripe |
-| `STRIPE_WEBHOOK_SECRET` | Secret webhook Stripe |
-| `RESEND_API_KEY` | Clé API Resend |
-| `ADMIN_SEED_EMAIL` | Email du compte admin créé au seed |
+| Variable                        | Description                           |
+| ------------------------------- | ------------------------------------- |
+| `APP_KEY`                       | Généré via `php artisan key:generate` |
+| `NEXT_PUBLIC_SUPABASE_URL`      | URL de ton projet Supabase            |
+| `NEXT_PUBLIC_SUPABASE_ANON_KEY` | Clé anonyme Supabase                  |
+| `SUPABASE_SERVICE_ROLE_KEY`     | Clé service Supabase (backend only)   |
+| `STRIPE_SECRET_KEY`             | Clé secrète Stripe                    |
+| `STRIPE_WEBHOOK_SECRET`         | Secret webhook Stripe                 |
+| `RESEND_API_KEY`                | Clé API Resend                        |
+| `ADMIN_SEED_EMAIL`              | Email du compte admin créé au seed    |
 
 ### URLs de développement
 
-| Service | URL |
-|---------|-----|
-| Frontend | http://localhost:3000 |
+| Service     | URL                          |
+| ----------- | ---------------------------- |
+| Frontend    | http://localhost:3000        |
 | Backend API | http://localhost:8000/api/v1 |
-| Via Nginx | http://localhost:80 |
-| PostgreSQL | localhost:5432 |
+| Via Nginx   | http://localhost:80          |
+| PostgreSQL  | localhost:5432               |
 
 ---
 
@@ -189,7 +189,7 @@ Les services communiquent via le réseau Docker interne. Seul Nginx expose des p
 
 ## Fonctionnalités
 
-- **Builder drag & drop** — éditeur visuel Craft.js, composants personnalisables
+- **Builder drag & drop** — éditeur visuel par blocs, composants personnalisables
 - **Templates** — galerie de templates pré-construits
 - **Sous-domaines** — slug personnalisé automatiquement configuré
 - **Freemium / Pro** — gestion d'abonnements Stripe, portail client intégré
