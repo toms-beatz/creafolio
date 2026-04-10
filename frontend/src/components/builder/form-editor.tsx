@@ -101,7 +101,7 @@ function FormEditorInner({
     craftStateJson,
     updatedAt,
     isPremium,
-    username,
+    username: _username,
 }: Omit<FormEditorProps, 'initialTheme'>) {
     const router = useRouter();
     const [saveStatus, setSaveStatus] = useState<SaveStatus>('saved');

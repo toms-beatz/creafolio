@@ -2,7 +2,6 @@
 
 import { useRef, useState, useEffect, useCallback } from 'react';
 import { motion, useInView, animate } from 'framer-motion';
-import { cn } from '@/lib/utils';
 
 interface Stat {
     label: string;

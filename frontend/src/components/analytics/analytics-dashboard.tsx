@@ -206,7 +206,7 @@ export function AnalyticsDashboard({
     const [summaries, setSummaries] = useState(initialSummaries);
     const [referrers, setReferrers] = useState(initialReferrers);
     const [linkClicks, setLinkClicks] = useState(initialLinkClicks);
-    const [visitors, setVisitors] = useState(initialVisitors);
+    const [visitors, _setVisitors] = useState(initialVisitors);
     const [refreshing, startRefresh] = useTransition();
     const [lastRefreshed, setLastRefreshed] = useState<Date | null>(null);
 

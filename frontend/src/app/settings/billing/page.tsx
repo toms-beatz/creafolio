@@ -4,13 +4,13 @@ import Link from 'next/link';
 import { AlertTriangle, ArrowRight } from 'lucide-react';
 import { BillingActions } from './billing-actions';
 
-interface Profile {
+interface _Profile {
     plan: string;
     trial_ends_at?: string;
     stripe_customer_id?: string;
 }
 
-interface Subscription {
+interface _Subscription {
     current_period_end?: string;
     cancel_at_period_end?: boolean;
 }

@@ -74,7 +74,8 @@ export function useAnalyticsRealtime(
 
         // Debug: log all messages in dev
         if (process.env.NODE_ENV === "development") {
-          console.log("[Reverb]", msg.event, msg.channel ?? "", msg.data);
+          // eslint-disable-next-line no-console
+          console.warn("[Reverb]", msg.event, msg.channel ?? "", msg.data);
         }
 
         if (msg.event === "pusher:connection_established") {
