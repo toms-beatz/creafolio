@@ -1,0 +1,353 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* Habibi est chargé via next/font/google (auto-hébergé) — variable: --font-habibi */
+
+/* ── Habibi on all headings globally ─────────────────────── */
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  font-family: var(--font-habibi, "Habibi", serif);
+}
+
+@layer utilities {
+  .text-balance {
+    text-wrap: balance;
+  }
+}
+
+/* ── Accessibility ────────────────────────────────────────── */
+
+/* Visible focus ring for keyboard navigation */
+*:focus-visible {
+  outline: 2px solid var(--bp-accent);
+  outline-offset: 2px;
+}
+
+/* Remove focus outline for mouse users */
+*:focus:not(:focus-visible) {
+  outline: none;
+}
+
+/* Respect reduced motion preferences */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
+
+/* Screen reader only utility (fallback if Tailwind sr-only missing) */
+.sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border-width: 0;
+}
+
+/* Selection styling for better readability */
+::selection {
+  background-color: rgba(173, 123, 96, 0.3);
+  color: #1a1a1a;
+}
+
+/* ── Blueprint Design System ─────────────────────────────── */
+:root {
+  --bp-bg: #f4eeea;
+  --bp-surface: #e8c9b5;
+  --bp-border: #d4a485;
+  --bp-dashed: #e8c9b5;
+  --bp-text: #1a1a1a;
+  --bp-muted: #7a6658;
+  /* Creafolio terracotta */
+  --bp-accent: #ad7b60;
+  --bp-accent-dim: #f4eeea;
+  --bp-accent-glow: rgba(173, 123, 96, 0.15);
+}
+
+/* ── Keyframe animations ──────────────────────────────────── */
+@keyframes bp-fade-up {
+  from {
+    opacity: 0;
+    transform: translateY(24px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes bp-fade-in {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes bp-slide-right {
+  from {
+    opacity: 0;
+    transform: translateX(-16px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+@keyframes bp-scale-in {
+  from {
+    opacity: 0;
+    transform: scale(0.97);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+@keyframes bp-scan {
+  0% {
+    top: -4px;
+    opacity: 0;
+  }
+  5% {
+    opacity: 1;
+  }
+  95% {
+    opacity: 1;
+  }
+  100% {
+    top: 100%;
+    opacity: 0;
+  }
+}
+
+@keyframes bp-shine {
+  0% {
+    background-position: 200% center;
+  }
+  100% {
+    background-position: -200% center;
+  }
+}
+
+@keyframes bp-blink {
+  0%,
+  100% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0;
+  }
+}
+
+/* ── Animation utility classes ────────────────────────────── */
+.animate-bp-fade-up {
+  animation: bp-fade-up 0.65s cubic-bezier(0.16, 1, 0.3, 1) both;
+}
+.animate-bp-fade-in {
+  animation: bp-fade-in 0.5s ease both;
+}
+.animate-bp-slide-right {
+  animation: bp-slide-right 0.5s cubic-bezier(0.16, 1, 0.3, 1) both;
+}
+.animate-bp-scale-in {
+  animation: bp-scale-in 0.6s cubic-bezier(0.16, 1, 0.3, 1) both;
+}
+.animate-bp-glow {
+  background: linear-gradient(
+    90deg,
+    var(--bp-accent) 0%,
+    var(--bp-accent) 20%,
+    #8e9498 30%,
+    #a0a4a7 35%,
+    #b5b8ba 39%,
+    #cccece 42%,
+    #dedfe0 45%,
+    #eeefef 47%,
+    #f8f8f8 49%,
+    #fff 50%,
+    #f8f8f8 51%,
+    #eeefef 53%,
+    #dedfe0 55%,
+    #cccece 58%,
+    #b5b8ba 61%,
+    #a0a4a7 65%,
+    #8e9498 70%,
+    var(--bp-accent) 80%,
+    var(--bp-accent) 100%
+  );
+  background-size: 350% auto;
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  animation: bp-shine 12s linear infinite;
+}
+.animate-bp-scan {
+  animation: bp-scan 10s linear infinite;
+}
+.animate-bp-blink {
+  animation: bp-blink 1.2s step-start infinite;
+}
+
+/* Delays stagger */
+.delay-100 {
+  animation-delay: 100ms;
+}
+.delay-200 {
+  animation-delay: 200ms;
+}
+.delay-300 {
+  animation-delay: 300ms;
+}
+.delay-400 {
+  animation-delay: 400ms;
+}
+.delay-500 {
+  animation-delay: 500ms;
+}
+.delay-600 {
+  animation-delay: 600ms;
+}
+.delay-700 {
+  animation-delay: 700ms;
+}
+.delay-800 {
+  animation-delay: 800ms;
+}
+
+/* ── Scrollbar masking ────────────────────────────────────── */
+.scrollbar-none {
+  scrollbar-width: none;
+  -ms-overflow-style: none;
+}
+.scrollbar-none::-webkit-scrollbar {
+  display: none;
+}
+
+@layer base {
+  :root {
+    --background: 0 0% 100%;
+    --foreground: 0 0% 3.9%;
+    --card: 0 0% 100%;
+    --card-foreground: 0 0% 3.9%;
+    --popover: 0 0% 100%;
+    --popover-foreground: 0 0% 3.9%;
+    --primary: 0 0% 9%;
+    --primary-foreground: 0 0% 98%;
+    --secondary: 0 0% 96.1%;
+    --secondary-foreground: 0 0% 9%;
+    --muted: 0 0% 96.1%;
+    --muted-foreground: 0 0% 45.1%;
+    --accent: 0 0% 96.1%;
+    --accent-foreground: 0 0% 9%;
+    --destructive: 0 84.2% 60.2%;
+    --destructive-foreground: 0 0% 98%;
+    --border: 0 0% 89.8%;
+    --input: 0 0% 89.8%;
+    --ring: 0 0% 3.9%;
+    --chart-1: 12 76% 61%;
+    --chart-2: 173 58% 39%;
+    --chart-3: 197 37% 24%;
+    --chart-4: 43 74% 66%;
+    --chart-5: 27 87% 67%;
+    --radius: 0.5rem;
+  }
+  .dark {
+    --background: 0 0% 3.9%;
+    --foreground: 0 0% 98%;
+    --card: 0 0% 3.9%;
+    --card-foreground: 0 0% 98%;
+    --popover: 0 0% 3.9%;
+    --popover-foreground: 0 0% 98%;
+    --primary: 0 0% 98%;
+    --primary-foreground: 0 0% 9%;
+    --secondary: 0 0% 14.9%;
+    --secondary-foreground: 0 0% 98%;
+    --muted: 0 0% 14.9%;
+    --muted-foreground: 0 0% 63.9%;
+    --accent: 0 0% 14.9%;
+    --accent-foreground: 0 0% 98%;
+    --destructive: 0 62.8% 30.6%;
+    --destructive-foreground: 0 0% 98%;
+    --border: 0 0% 14.9%;
+    --input: 0 0% 14.9%;
+    --ring: 0 0% 83.1%;
+    --chart-1: 220 70% 50%;
+    --chart-2: 160 60% 45%;
+    --chart-3: 30 80% 55%;
+    --chart-4: 280 65% 60%;
+    --chart-5: 340 75% 55%;
+  }
+}
+/* ── Animations pour les blocs builder (animateIn prop) ──────── */
+@keyframes bp-block-fade {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+@keyframes bp-block-slide-up {
+  from {
+    opacity: 0;
+    transform: translateY(32px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+@keyframes bp-block-slide-down {
+  from {
+    opacity: 0;
+    transform: translateY(-32px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+@keyframes bp-block-scale {
+  from {
+    opacity: 0;
+    transform: scale(0.94);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+.bp-animate-fade {
+  animation: bp-block-fade 0.55s ease-out both;
+}
+.bp-animate-slide {
+  animation: bp-block-slide-up 0.6s ease-out both;
+}
+.bp-animate-slide-up {
+  animation: bp-block-slide-up 0.6s ease-out both;
+}
+.bp-animate-slide-down {
+  animation: bp-block-slide-down 0.6s ease-out both;
+}
+.bp-animate-scale {
+  animation: bp-block-scale 0.5s ease-out both;
+}

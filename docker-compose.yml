@@ -1,0 +1,116 @@
+services:
+  db:
+    image: postgres:17-alpine
+    environment:
+      POSTGRES_DB: ${POSTGRES_DB:-blooprint}
+      POSTGRES_USER: ${POSTGRES_USER:-blooprint}
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD:-secret}
+    volumes:
+      - pgdata:/var/lib/postgresql/data
+    ports:
+      - "${POSTGRES_PORT:-5432}:5432"
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U ${POSTGRES_USER:-blooprint}"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+
+  backend:
+    restart: unless-stopped
+    build:
+      context: ./backend
+      dockerfile: Dockerfile
+    depends_on:
+      db:
+        condition: service_healthy
+    environment:
+      DB_CONNECTION: pgsql
+      DB_HOST: db
+      DB_PORT: 5432
+      DB_DATABASE: ${POSTGRES_DB:-blooprint}
+      DB_USERNAME: ${POSTGRES_USER:-blooprint}
+      DB_PASSWORD: ${POSTGRES_PASSWORD:-secret}
+      APP_KEY: ${APP_KEY}
+      APP_ENV: ${APP_ENV:-local}
+      APP_DEBUG: ${APP_DEBUG:-true}
+      APP_URL: ${APP_URL:-http://localhost:8000}
+      FRONTEND_URL: ${FRONTEND_URL:-http://localhost:3000}
+      SANCTUM_TOKEN_EXPIRATION: ${SANCTUM_TOKEN_EXPIRATION:-525600}
+    ports:
+      - "8000:8000"
+    volumes:
+      - ./backend:/var/www/html
+      - /var/www/html/vendor
+    command: php artisan serve --host=0.0.0.0 --port=8000
+
+  reverb:
+    restart: unless-stopped
+    build:
+      context: ./backend
+      dockerfile: Dockerfile
+    depends_on:
+      db:
+        condition: service_healthy
+    environment:
+      DB_CONNECTION: pgsql
+      DB_HOST: db
+      DB_PORT: 5432
+      DB_DATABASE: ${POSTGRES_DB:-blooprint}
+      DB_USERNAME: ${POSTGRES_USER:-blooprint}
+      DB_PASSWORD: ${POSTGRES_PASSWORD:-secret}
+      APP_KEY: ${APP_KEY}
+      APP_ENV: ${APP_ENV:-local}
+      APP_DEBUG: ${APP_DEBUG:-true}
+      APP_URL: ${APP_URL:-http://localhost:8000}
+      FRONTEND_URL: ${FRONTEND_URL:-http://localhost:3000}
+      REVERB_APP_ID: ${REVERB_APP_ID:-205361}
+      REVERB_APP_KEY: ${REVERB_APP_KEY:-gmay5rogzumjxrrrg5l6}
+      REVERB_APP_SECRET: ${REVERB_APP_SECRET:-2xlv1fj5vckmn07hhem9}
+      REVERB_HOST: "0.0.0.0"
+      REVERB_PORT: "8080"
+      REVERB_SCHEME: "http"
+      BROADCAST_CONNECTION: reverb
+    ports:
+      - "8080:8080"
+    command: php artisan reverb:start --host=0.0.0.0 --port=8080 --debug
+
+  frontend:
+    restart: unless-stopped
+    build:
+      context: ./frontend
+      dockerfile: Dockerfile.dev
+    depends_on:
+      - backend
+    environment:
+      NEXT_PUBLIC_API_URL: ${NEXT_PUBLIC_API_URL:-http://localhost:8000/api}
+      LARAVEL_API_URL: http://backend:8000/api
+      NEXT_PUBLIC_REVERB_HOST: ${REVERB_HOST:-localhost}
+      NEXT_PUBLIC_REVERB_PORT: ${REVERB_PORT:-8080}
+      NEXT_PUBLIC_REVERB_APP_KEY: ${REVERB_APP_KEY:-gmay5rogzumjxrrrg5l6}
+      WATCHPACK_POLLING: "true"
+    ports:
+      - "3000:3000"
+    volumes:
+      - ./frontend:/app
+      - /app/node_modules
+      - /app/.next
+
+  webdb:
+    image: webdb/app:latest
+    ports:
+      - "22071:22071"
+    depends_on:
+      - db
+
+  nginx:
+    image: nginx:alpine
+    ports:
+      - "80:80"
+    volumes:
+      - ./docker/nginx/nginx.conf:/etc/nginx/nginx.conf:ro
+    depends_on:
+      - frontend
+      - backend
+
+volumes:
+  pgdata:

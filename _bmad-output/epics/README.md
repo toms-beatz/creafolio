@@ -8,18 +8,22 @@
 
 ## Ordre d'implémentation
 
-| Priorité | Epic    | Titre                        | Status  |
-| -------- | ------- | ---------------------------- | ------- |
-| 1        | EPIC-09 | Infrastructure & Performance | Terminé |
-| 2        | EPIC-01 | Auth & Onboarding            | Terminé |
-| 2.5      | EPIC-10 | Landing Page                 | A faire |
-| 3        | EPIC-02 | Builder (Craft.js)           | A faire |
-| 4        | EPIC-03 | Templates & Composants       | A faire |
-| 5        | EPIC-04 | Publication                  | A faire |
-| 6        | EPIC-05 | Freemium & Billing (Stripe)  | A faire |
-| 7        | EPIC-07 | SEO                          | A faire |
-| 8        | EPIC-06 | Analytics                    | A faire |
-| 9        | EPIC-08 | RGPD & Settings              | A faire |
+| Priorité | Epic    | Titre                                | Status          |
+| -------- | ------- | ------------------------------------ | --------------- |
+| 1        | EPIC-09 | Infrastructure & Performance         | Terminé         |
+| 2        | EPIC-01 | Auth & Onboarding                    | Terminé         |
+| 2.5      | EPIC-10 | Landing Page                         | A faire         |
+| 3        | EPIC-02 | Builder (Craft.js)                   | Dépriorisé V0.2 |
+| 3.1      | EPIC-14 | Form Editor (remplace EPIC-02)       | Terminé         |
+| 3.2      | EPIC-15 | Wizard "Portfolio Express"           | A faire         |
+| 3.3      | EPIC-16 | Profils Visuels UGC + Premium Themes | A faire         |
+| 3.4      | EPIC-17 | Médiathèque Créateur                 | A faire         |
+| 4        | EPIC-03 | Templates & Composants               | A faire         |
+| 5        | EPIC-04 | Publication                          | A faire         |
+| 6        | EPIC-05 | Freemium & Billing (Stripe)          | A faire         |
+| 7        | EPIC-07 | SEO                                  | A faire         |
+| 8        | EPIC-06 | Analytics                            | A faire         |
+| 9        | EPIC-08 | RGPD & Settings                      | A faire         |
 
 ---
 
