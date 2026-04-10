@@ -48,11 +48,12 @@ export default async function BuilderPage({ params }: Props) {
 
     // Normaliser theme — guard against non-JSON strings like 'default'
     let initialTheme = null;
-    if (portfolio.theme && portfolio.theme !== 'default') {
+    const rawTheme = portfolio.theme as unknown;
+    if (rawTheme && rawTheme !== 'default') {
         try {
-            initialTheme = typeof portfolio.theme === 'string'
-                ? JSON.parse(portfolio.theme)
-                : portfolio.theme;
+            initialTheme = typeof rawTheme === 'string'
+                ? JSON.parse(rawTheme)
+                : rawTheme;
         } catch {
             initialTheme = null;
         }
