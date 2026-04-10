@@ -6,7 +6,7 @@ const AUTH_ROUTES = ["/login", "/signup"];
 export async function middleware(request: NextRequest) {
   const { pathname } = request.nextUrl;
 
-  const token = request.cookies.get("blooprint_token")?.value;
+  const token = request.cookies.get("creafolio_token")?.value;
   const isAuthenticated = Boolean(token);
 
   const isProtected = PROTECTED_ROUTES.some((r) => pathname.startsWith(r));
