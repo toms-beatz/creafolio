@@ -13,7 +13,7 @@ export default async function BillingPage() {
     if (!meData?.user) redirect('/login');
 
     const profile = meData.user.profile;
-    const subscription = meData.user.subscription ?? null;
+    const subscription = (meData.user as unknown as { subscription?: { current_period_end?: string; cancel_at_period_end?: boolean } }).subscription ?? null;
 
     const isPremium = profile.plan === 'premium';
     const isTrialActive =
