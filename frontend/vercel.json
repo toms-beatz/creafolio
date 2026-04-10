@@ -34,11 +34,5 @@
         }
       ]
     }
-  ],
-  "crons": [
-    {
-      "path": "/api/cron/cleanup-media",
-      "schedule": "0 3 * * 1"
-    }
   ]
 }
