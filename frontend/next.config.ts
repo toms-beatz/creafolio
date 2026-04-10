@@ -1,9 +1,8 @@
 import type { NextConfig } from "next";
-import path from "path";
 
 const nextConfig: NextConfig = {
-  output: "standalone",
-  outputFileTracingRoot: path.join(__dirname, "../"),
+  // output: "standalone" removed — Vercel handles its own output bundling.
+  // Keeping standalone breaks Edge middleware on Vercel.
   reactStrictMode: false, // Disable double-render in dev for performance
   images: {
     formats: ["image/avif", "image/webp"],
