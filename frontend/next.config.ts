@@ -1,7 +1,9 @@
 import type { NextConfig } from "next";
+import path from "path";
 
 const nextConfig: NextConfig = {
   output: "standalone",
+  outputFileTracingRoot: path.join(__dirname, "../"),
   reactStrictMode: false, // Disable double-render in dev for performance
   images: {
     formats: ["image/avif", "image/webp"],
@@ -33,7 +35,7 @@ const nextConfig: NextConfig = {
     ],
   },
   experimental: {
-    optimizePackageImports: ["@craftjs/core", "lucide-react"],
+    optimizePackageImports: ["lucide-react"],
   },
 };
 

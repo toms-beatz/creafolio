@@ -74,7 +74,6 @@ export function useAnalyticsRealtime(
 
         // Debug: log all messages in dev
         if (process.env.NODE_ENV === "development") {
-          // eslint-disable-next-line no-console
           console.warn("[Reverb]", msg.event, msg.channel ?? "", msg.data);
         }
 

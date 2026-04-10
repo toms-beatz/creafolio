@@ -80,7 +80,6 @@ export function VisitorsTable({ portfolioId, initialRows, refreshTrigger }: Visi
                 setRows(data);
             } catch { /* garder les données stale */ }
         });
-        // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [refreshTrigger, portfolioId]);
 
     const handleSort = useCallback((col: SortKey) => {
@@ -141,6 +140,7 @@ export function VisitorsTable({ portfolioId, initialRows, refreshTrigger }: Visi
                             <td className="px-3 py-2 whitespace-nowrap">
                                 {row.country_code ? (
                                     <span className="flex items-center gap-1.5">
+                                        {/* eslint-disable-next-line @next/next/no-img-element */}
                                         <img
                                             src={`${FLAG_BASE}${row.country_code.toLowerCase()}.png`}
                                             alt={row.country_code}
